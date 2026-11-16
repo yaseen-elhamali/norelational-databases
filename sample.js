@@ -42,15 +42,16 @@ async function main() {
   // ----------------------------------------------------------
   // In mongosh you would write:
   //   db.books.insertOne({ title: "...", publisher: { name: "...", country: "..." } })
-  //
+  await books.insertOne({ title: "Dune", publisher: { name: "Chilton", country: "USA" } });
   // Do the same here. Insert one book that has a publisher field
   // containing an embedded object with at least a name and a country.
 
   // ----------------------------------------------------------
   // TODO 2 - insertOne with an array
-  // ----------------------------------------------------------
-  // Insert one book that has a tags field containing
-  // an array of at least 3 strings.
+  await books.insertOne({
+    title: "Brave New World",
+    tags: ["dystopian", "science fiction", "classic"],
+  });
 
   // ----------------------------------------------------------
   // TODO 3 - insertMany

@@ -69,32 +69,43 @@ async function main() {
 
   // ----------------------------------------------------------
   // TODO 4 - find all documents
-  // ----------------------------------------------------------
-  // Retrieve every document in the collection and log each title.
-  // Hint: find() returns a cursor - call .toArray() to get an array.
+    const allBooks = await books.find({}).toArray();
+
+  for (const book of allBooks) {
+    console.log(book.title);
+  }
 
   // ----------------------------------------------------------
   // TODO 5 - findOne with dot notation
-  // ----------------------------------------------------------
-  // Find the first book whose publisher.country is "France".
-  // Dot notation lets you filter on a field inside an embedded object:
-  //   { "publisher.country": "France" }
-  // Log the title of the result.
+    const firstFrenchBook = await books.findOne({
+    "publisher.country": "France",
+  });
+
+  if (firstFrenchBook) {
+    console.log(firstFrenchBook.title);
+  }
 
   // ----------------------------------------------------------
   // TODO 6 - find with a filter
-  // ----------------------------------------------------------
-  // Find all books whose publisher.country is "France".
-  // Log how many there are and list their titles.
+    const frenchBooks = await books.find({
+    "publisher.country": "France",
+  }).toArray();
+
+  console.log(`Books with a publisher in France: ${frenchBooks.length}`);
+
+  for (const book of frenchBooks) {
+    console.log(book.title);
+  }
 
   // ----------------------------------------------------------
   // TODO 7 - find with $exists
-  // ----------------------------------------------------------
-  // Find all books that have a tags field, regardless of its value.
-  //   { tags: { $exists: true } }
-  // Log each title and its tags array.
+    const taggedBooks = await books.find({
+    tags: { $exists: true },
+  }).toArray();
 
-  // Always close the connection when you are done.
+  for (const book of taggedBooks) {
+    console.log(book.title, book.tags);
+  }
   await client.close();
 }
 

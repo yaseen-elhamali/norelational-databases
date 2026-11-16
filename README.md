@@ -37,7 +37,7 @@ define an async main function
   close the connection
 call main()
 ```
-hh
+
 ## Your task
 
 Fill in the seven TODOs inside `sample.js`. Each one is a MongoDB operation you already know from the shell - your job is to write it in Node.js.

@@ -55,9 +55,17 @@ async function main() {
 
   // ----------------------------------------------------------
   // TODO 3 - insertMany
-  // ----------------------------------------------------------
-  // Insert at least 5 books in a single call using insertMany.
-  // Include a mix: some with a publisher object, some with tags, some with both.
+  await books.insertMany([
+    { title: "The Hobbit", tags: ["fantasy", "adventure"] },
+    { title: "The Alchemist", tags: ["fiction", "adventure"] },
+    { title: "1984", publisher: { name: "Secker & Warburg", country: "UK" } },
+    { title: "The Stranger", publisher: { name: "Gallimard", country: "France" } },
+    {
+      title: "The Little Prince",
+      publisher: { name: "Reynal & Hitchcock", country: "USA" },
+      tags: ["fantasy", "classic"],
+    },
+  ]);
 
   // ----------------------------------------------------------
   // TODO 4 - find all documents
